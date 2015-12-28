@@ -75,8 +75,8 @@ Client.prototype.identify = function createUser(customerid, email, data) {
   }
 
   data = _.clone(data);
-  data.created_at = Date.now();
-  data.email = email;
+  data.created_at = data.created_at || (Date.now() / 1000);
+  data.email = data.email || email;
 
   var deferred = Q.defer()
     , meta = this._requestData(customerid, 'PUT')
